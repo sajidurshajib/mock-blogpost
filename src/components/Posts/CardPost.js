@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom'
 import {Card, StyledBody, StyledAction} from 'baseui/card'
 import {Button} from 'baseui/button'
 
@@ -11,14 +12,20 @@ const CardPost = (props)=> {
                             overrides={{Root: {style: {marginBottom: '15px'}}}}
                             title={`${v.postTitle}`}
                         >
-                            <h2>{}</h2>
                             <StyledBody>
+                                <h4 style={{"color":"#666666"}}>{v.authorName}</h4>
+                                <p style={{"color":"#666666","fontSize":"12px"}}>{v.createdAt}</p>
                                 {`${v.postContent.substring(0,270)}...`}
                             </StyledBody>
 
                             <StyledAction>
                                 <Button >
-                                Read more
+                                <Link
+                                style={{
+                                    "color":"#fff",
+                                    "textDecoration":"none"
+                                }}
+                                to={`/posts/${v.id}`}>Read more</Link>
                                 </Button>
                             </StyledAction>
                         </Card>

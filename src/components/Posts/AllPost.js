@@ -1,11 +1,12 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
+import {Link} from 'react-router-dom'
 import {Grid, Cell} from 'baseui/layout-grid'
 import {HeadingLarge} from 'baseui/typography'
 import CardPost from './CardPost'
 import { Pagination } from "baseui/pagination";
 
-const Posts = ()=>{
+const AllPost = ()=>{
     
     const [data, setData] = useState(null)
     const [currentPage, setCurrentPage] = React.useState(1);
@@ -26,11 +27,18 @@ const Posts = ()=>{
     )
 
     return(
-        <div className="Posts">
+        <div className="AllPost">
             <Grid>
                 <Cell span={[2]}></Cell>
                 <Cell span={[8]}>
-                    <HeadingLarge>Mock BlogPost</HeadingLarge>
+                    <HeadingLarge>
+                        <Link
+                            style={{
+                                "color":"#000",
+                                "textDecoration":"none"
+                            }}
+                            to=''>Mock BlogPost</Link>
+                    </HeadingLarge>
                     <CardPost data={data} />
 
                     <Pagination
@@ -49,4 +57,4 @@ const Posts = ()=>{
     )
 }
 
-export default Posts
+export default AllPost
