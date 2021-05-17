@@ -1,11 +1,10 @@
 import BaseUIWrapper from './BaseUIWrapper'
-import {Button} from 'baseui/button'
-
+import Home from './pages/Home'
 const App = ()=>{
   return (
     <div className="App">
         <BaseUIWrapper>
-            <Button>Hello</Button>
+            <Home />
         </BaseUIWrapper>
     </div>
   );
