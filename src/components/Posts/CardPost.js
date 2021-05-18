@@ -19,14 +19,14 @@ const CardPost = (props)=> {
                             </StyledBody>
 
                             <StyledAction>
-                                <Button >
                                 <Link
-                                style={{
-                                    "color":"#fff",
-                                    "textDecoration":"none"
-                                }}
-                                to={`/posts/${v.id}`}>Read more</Link>
-                                </Button>
+                                    style={{
+                                        "color":"#fff",
+                                        "textDecoration":"none"
+                                    }}
+                                    to={`/posts/${v.id}`}>
+                                    <Button>Read more</Button>
+                                </Link>
                             </StyledAction>
                         </Card>
                     </div>

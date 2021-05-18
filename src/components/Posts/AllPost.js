@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios'
-import {Link} from 'react-router-dom'
 import {Grid, Cell} from 'baseui/layout-grid'
-import {HeadingLarge} from 'baseui/typography'
 import CardPost from './CardPost'
+import SearchPost from './SearchPost'
 import { Pagination } from "baseui/pagination";
 
 const AllPost = ()=>{
     
+    const [search, setSearch] = useState('')
+    const [searchData, setSearchData] = useState(null)
     const [data, setData] = useState(null)
     const [currentPage, setCurrentPage] = React.useState(1);
 
@@ -15,7 +16,6 @@ const AllPost = ()=>{
             async function fetchAPI(){
                 await axios.get(`https://609925a599011f001714034f.mockapi.io/api/v1/Posts?page=${currentPage}&limit=5`)
                 .then(res=>{
-                    console.log(res)
                     setData(res.data)
                 })
                 .catch(err=>{
@@ -26,20 +26,32 @@ const AllPost = ()=>{
         },[currentPage]
     )
 
+    useEffect(() => {
+        async function searchAPI(){
+            await axios.get(`https://609925a599011f001714034f.mockapi.io/api/v1/Posts?page=${currentPage}&limit=5&search=${search}`)
+                .then(res=>{
+                    console.log(res.data)
+                    setSearchData(res.data)
+                })
+                .catch(err=>{
+                    console.log(err)
+                })
+        }
+        searchAPI()
+    }, [currentPage,search])
+
+    console.log(searchData)
     return(
         <div className="AllPost">
             <Grid>
                 <Cell span={[2]}></Cell>
                 <Cell span={[8]}>
-                    <HeadingLarge>
-                        <Link
-                            style={{
-                                "color":"#000",
-                                "textDecoration":"none"
-                            }}
-                            to=''>Mock BlogPost</Link>
-                    </HeadingLarge>
-                    <CardPost data={data} />
+
+                    <SearchPost srch={setSearch}/>
+
+                    {search==='' ? 
+                    <CardPost data={data} />:<CardPost data={searchData} />}
+                    
 
                     <Pagination
                     numPages={10}

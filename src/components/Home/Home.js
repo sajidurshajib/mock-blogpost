@@ -11,14 +11,16 @@ const Home = ()=>{
                 <Cell span={[4]}>
                     <HeadingLarge>Mock BlogPost</HeadingLarge>
                     <Button disabled>About</Button>
-                    <Button>
-                        <Link
-                            style={{
-                                "color":"#fff",
-                                "textDecoration":"none"
-                            }}
-                            to='/posts'>Posts</Link>
-                    </Button>        
+                    <Link
+                        style={{
+                            "color":"#fff",
+                            "textDecoration":"none"
+                        }}
+                        to='/posts'>
+                        <Button>
+                            Posts
+                        </Button>
+                    </Link>
                 </Cell>
             </Grid>
             
